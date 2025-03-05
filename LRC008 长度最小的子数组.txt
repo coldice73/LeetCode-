@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int minSubArrayLen(int target, vector<int>& nums) {
+        int faster=0,later=0;
+        int sum=0;
+        int minlength=10000;
+        bool ife=false;
+        for(;faster<nums.size();faster++){
+            sum+=nums[faster]; 
+            while(sum>=target&&later<=faster){
+                minlength=min(faster-later+1,minlength);
+                sum-=nums[later];
+                later++;
+                ife=true;
+            }
+        }
+        if(ife==true)
+        return minlength;
+        else return 0;
+    }
+};
